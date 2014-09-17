@@ -1,0 +1,16 @@
+#!/bin/bash
+if [ true ]; then
+	echo "Looking for workspace file in $1..."
+	file=`find $1/*.xcworkspace -d 0 | head -1`
+	if [ -z "$file" ]; then
+		echo "Looking for project file in $1..."
+		file=`find $1/*.xcodeproj -d 0 | head -1`
+	fi
+fi
+
+if [ $file ]; then
+	open $file
+else
+	echo "No file found!"
+	exit -1
+fi
